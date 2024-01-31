@@ -1,7 +1,5 @@
-name: Receive PR
+name: Check Incoming PR
 
-# read-only repo token
-# no access to secrets
 on:
   pull_request:
 
@@ -9,11 +7,16 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    steps:        
-      - uses: actions/checkout@v2
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            data.txt
+          sparse-checkout-cone-mode: false
 
       - name: Save PR number
         run: |
+          ls -lah
           mkdir -p ./pr
           echo ${{ github.event.number }} > ./pr/NR
           echo HELLO
