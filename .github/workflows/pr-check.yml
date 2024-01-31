@@ -1,11 +1,11 @@
-name: ci-build
+name: pr-check
 
 on:
-  pull_request:
+  pull_request_target:
   workflow_dispatch:
 
 jobs:
   docs:
     runs-on: ubuntu-latest
     steps:
-    - run: echo HELLO
+    - run: echo DOES THIS ALWAYS RUN
