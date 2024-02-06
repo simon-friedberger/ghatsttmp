@@ -19,6 +19,5 @@ jobs:
         with:
           python-version: '3.12'
           cache: 'pip'
-          cache-dependency-path: local/tools/requirements.txt
-      - run: pip install dnspython
+      - run: pip install -r local/tools/requirements.txt
       - run: python local/tools/check_dns.py local/data.txt other/data.txt ${{ github.event.pull_request.number }}
