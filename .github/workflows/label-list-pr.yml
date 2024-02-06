@@ -10,10 +10,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          sparse-checkout: |
-            data.txt
-          sparse-checkout-cone-mode: false
+          path: local
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.sha }}
           path: other
+      - run: ls -lahR
