@@ -19,16 +19,6 @@ def read_rules(psl_filename):
             if line.startswith("//"):
                 continue
 
-            #if line.startswith("*."):
-            #    line = line[2:]
-
-            #if line.startswith("!"):
-            #    line = line[1:]
-
-            #if any(illegal_char in line for illegal_char in "!*"):
-            #    print(line)
-            #    assert False
-
             rules.add(line)
     return rules
 
@@ -73,6 +63,8 @@ def check_dns_pr(rule, pr_id):
             else:
                 print(f"    DNS _psl entry incorrect expected PR {pr_id} != {dns_pr_id}.")
                 return False
+    print("No DNS entry with pull request URL found.")
+    return False
 
 
 def check_all(ruleset):
@@ -87,8 +79,6 @@ def check_all(ruleset):
 @click.argument('pr_id')
 def main(current_filename, pull_request_filename, pr_id):
     current_rules = read_rules(current_filename)
-    #check_all(current_rules)
-
     pull_request_rules = read_rules(pull_request_filename)
 
     all_good = True
