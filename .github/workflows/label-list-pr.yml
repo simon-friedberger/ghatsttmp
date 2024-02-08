@@ -22,5 +22,3 @@ jobs:
           cache: 'pip'
       - run: pip install -r local/tools/requirements.txt
       - run: python local/tools/check_dns.py local/public_suffix_list.dat other/public_suffix_list.dat ${{ github.event.pull_request.number }}
-      - run: cat local/public_suffix_list.dat | grep mozilla
-      - run: cat other/public_suffix_list.dat | grep mozilla
